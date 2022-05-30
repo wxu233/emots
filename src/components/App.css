@@ -1,7 +1,13 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
+  /* background-color: black; */
 ***REMOVED***
 
+.navbar-brand {
+  font-weight: bold;
+  font-size: x-large;
+***REMOVED***
+/* 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -35,4 +41,4 @@
   to {
     transform: rotate(360deg);
   ***REMOVED***
-***REMOVED***
+***REMOVED*** */
