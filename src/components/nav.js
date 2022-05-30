@@ -10,7 +10,7 @@ export default function TopNav(props) {
     return (
         <Navbar key="sm" bg="light" expand="false" className="mb-3">
             <Container fluid>
-                <Navbar.Brand href="#" className="">{props?.user ? props.user : "Kaomoji.io"***REMOVED***</Navbar.Brand>
+                <Navbar.Brand href="#" className="">{props?.user ? props.user : "Kaomoji.io"}</Navbar.Brand>
                 <Navbar.Toggle aria-controls="offcanvasNavbar-expand-sm" />
                 <Navbar.Offcanvas
                 id="offcanvasNavbar-expand-sm"
@@ -19,7 +19,7 @@ export default function TopNav(props) {
                 >
                     <Offcanvas.Header closeButton>
                         <Offcanvas.Title id="offcanvasNavbar-expand-sm">
-                            {props?.user ? props.user : "owo"***REMOVED***
+                            {props?.user ? props.user : "owo"}
                         </Offcanvas.Title>
                     </Offcanvas.Header>
                     <Offcanvas.Body>
@@ -32,4 +32,4 @@ export default function TopNav(props) {
             </Container>
         </Navbar>
     )
-***REMOVED***
+}

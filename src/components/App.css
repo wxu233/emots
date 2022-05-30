@@ -1,23 +1,23 @@
 .App {
   /* text-align: center; */
   /* background-color: black; */
-***REMOVED***
+}
 
 .navbar-brand {
   font-weight: bold;
   font-size: x-large;
-***REMOVED***
+}
 /* 
 .App-logo {
   height: 40vmin;
   pointer-events: none;
-***REMOVED***
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
-  ***REMOVED***
-***REMOVED***
+  }
+}
 
 .App-header {
   background-color: #282c34;
@@ -28,17 +28,17 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
-***REMOVED***
+}
 
 .App-link {
   color: #61dafb;
-***REMOVED***
+}
 
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
-  ***REMOVED***
+  }
   to {
     transform: rotate(360deg);
-  ***REMOVED***
-***REMOVED*** */
+  }
+} */

@@ -1,7 +1,7 @@
-import { useState, useEffect ***REMOVED*** from 'react'
-import { db ***REMOVED*** from './firebase'
-import { query, orderBy, limit, collection, getDocs ***REMOVED*** from 'firebase/firestore'
-import { useCollectionData ***REMOVED*** from 'react-firebase-hooks/firestore'
+import { useState, useEffect } from 'react'
+import { db } from './firebase'
+import { query, orderBy, limit, collection, getDocs } from 'firebase/firestore'
+import { useCollectionData } from 'react-firebase-hooks/firestore'
 import Kaomoji from './Kaomoji'
 import Container from 'react-bootstrap/Container'
 
@@ -18,8 +18,8 @@ export default function Display() {
     return (
         <Container>
             {data && data.map( msg => 
-                <Kaomoji data={msg***REMOVED*** />
-            )***REMOVED***
+                <Kaomoji data={msg} />
+            )}
         </Container>
     )
-***REMOVED***
+}
