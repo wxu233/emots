@@ -1,3 +1,7 @@
+.root {
+  background-color: #272822;
+}
+
 .App {
   /* text-align: center; */
   /* background-color: black; */
@@ -6,6 +10,21 @@
 .navbar-brand {
   font-weight: bold;
   font-size: x-large;
+}
+
+.card {
+  display: flex;
+  width: 20rem;
+}
+.card-img {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+@meida (max-width: 200px) {
+  .card {
+    flex-direction: row;
+  }
 }
 /* 
 .App-logo {

@@ -12,7 +12,13 @@ function App() {
   const [user, setUser] = React.useState()
 
   return (
-    <div className="App">
+    <div 
+        className="App"
+        style={{
+          backgroundColor: '#272822',
+          width: '100vw',
+          height: '100vh'
+        }}>
       {/* <p>{ data?.name ? data.name : "data missing" } </p> */}
       <TopNav user={user}/>
       <Display />

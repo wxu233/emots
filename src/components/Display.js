@@ -18,7 +18,7 @@ export default function Display() {
     return (
         <Container>
             {data && data.map( msg => 
-                <Kaomoji data={msg} />
+                <Kaomoji id={data.id} data={msg} />         
             )}
         </Container>
     )

@@ -10,7 +10,7 @@ export default function TopNav(props) {
     return (
         <Navbar key="sm" bg="light" expand="false" className="mb-3">
             <Container fluid>
-                <Navbar.Brand href="#" className="">{props?.user ? props.user : "Kaomoji.io"}</Navbar.Brand>
+                <Navbar.Brand href="#" className="">{props?.user ? props.user : "Kaomoji.xyz"}</Navbar.Brand>
                 <Navbar.Toggle aria-controls="offcanvasNavbar-expand-sm" />
                 <Navbar.Offcanvas
                 id="offcanvasNavbar-expand-sm"
