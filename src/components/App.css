@@ -12,20 +12,12 @@
   font-size: x-large;
 }
 
-.card {
-  display: flex;
-  width: 20rem;
-}
-.card-img {
-  width: 1.5rem;
-  height: 1.5rem;
-}
-
 @meida (max-width: 200px) {
   .card {
     flex-direction: row;
   }
 }
+
 /* 
 .App-logo {
   height: 40vmin;
