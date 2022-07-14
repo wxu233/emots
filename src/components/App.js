@@ -10,7 +10,8 @@ import { AuthProvider } from '../context/AuthContext'
 
 function App() {
     // change to user
-  const [user, setUser] = React.useState()
+  // const [user, setUser] = React.useState()
+  
 
   return (
     <AuthProvider>
@@ -21,7 +22,6 @@ function App() {
             width: '100vw',
             height: '100vh'
           }}>
-        {/* <p>{ data?.name ? data.name : "data missing" } </p> */}
         <TopNav />
         <Display />
       </div>

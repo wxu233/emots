@@ -25,7 +25,7 @@ export default function Login(props) {
     // try{
     setLoading(true)
     login( emailRef.current.value, passwordRef.current.value )
-      .then( ()=>{
+      .then( (cred)=>{
         props.setError('')
         props.handleModalClose()
       }).catch( err => {

@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
-import { auth } from '../components/firebase'
+import { auth, database, getCurrentTimestamp } from '../components/firebase'
 
 const AuthContext = React.createContext()
 
@@ -9,13 +9,31 @@ export function useAuth() {
 
 export function AuthProvider({ children }){
     const [currentUser, setCurrentUser] = useState()
-    const [ favorites, setFavorites ] = useState([])
+    const [userProfile, setUserProfile]  = useState()
 
     // const [isLoading, setLoading] = useState(true)
 
     function signup(email, password){
         // console.log(email + ": " + password)
-        return auth.createUserWithEmailAndPassword(email, password)
+       return auth.createUserWithEmailAndPassword(email, password)
+    }
+
+    function createUser(userID){
+        // console.log(userID)
+        const payload = {
+            userId: userID,
+            theme: 'default',
+            maxFavorites: 50,
+            maxCustoms: 20,
+            favorites: [],
+            customs: [],
+            createdAt: database.getCurrentTimestamp()
+        }
+        console.log('creating user')
+        database.users.add( payload ).then( docRef =>{
+            console.log(docRef)
+            setUserProfile(payload)
+        })
     }
 
     function login(email, password){
@@ -27,17 +45,35 @@ export function AuthProvider({ children }){
         return auth.signOut()
     }
 
-    function getFavorites(){
+    function getProfile(){
         if( currentUser ){
-            
+            database.users.where('userId', '==', currentUser.uid).get()
+                .then( doc => {
+                    // console.log(doc)
+                    const formattedDoc = {
+                        id: doc.id,
+                        ...doc.docs[0].data()
+                    }
+                    // console.log(formattedDoc)
+                    setUserProfile( formattedDoc )
+                })
+        }
+        else{
+            console.log("no current user")
+            return null
         }
     }
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged( user => {
             setCurrentUser(user)
-            console.log(user)
-            // setLoading(false)
+            // if( user ){
+            //     setUserProfile( getProfile() )
+            // }
+            // else{
+            //     console.log('no user in effect')
+            // }
+            // console.log('current profile' + userProfile)
         })
 
         return unsubscribe
@@ -45,9 +81,12 @@ export function AuthProvider({ children }){
 
     const value = {
         currentUser,
+        userProfile,
         signup,
         login,
-        logout
+        logout,
+        createUser,
+        getProfile
     }
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

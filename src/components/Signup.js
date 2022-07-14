@@ -16,7 +16,7 @@ export default function Signup(props) {
   const passwordConfirmRef = useRef()
   // const [error, setError] = useState('')
   const [isLoading, setLoading] = useState(false)
-  const { signup } = useAuth()
+  const { currentUser, createUser, signup } = useAuth()
 
   const handleSubmit = async(e) => {
     e.preventDefault()
@@ -30,23 +30,25 @@ export default function Signup(props) {
 
     setLoading(true)
     signup( emailRef.current.value, passwordRef.current.value )
-      .then( () => {
+      .then( (userCred) => {
+        createUser(userCred.user.uid)
         props.setError('')
         props.handleModalClose()
       }).catch( err => {
+        console.log(err)
         switch( err.code ){
           case "auth/email-already-in-use":
-          props.setError('Account with this email already exist')
-          break
-        case "auth/weak-password":
-          props.setError('Password must be at least 6 characters long')
-          break
-        case "auth/invalid-email":
-          props.setError('Email address is invalid')
-          break
-        default:
-          props.setError('Failed to create an account')
-          break
+            props.setError('Account with this email already exist')
+            break
+          case "auth/weak-password":
+            props.setError('Password must be at least 6 characters long')
+            break
+          case "auth/invalid-email":
+            props.setError('Email address is invalid')
+            break
+          default:
+            props.setError('Failed to create an account')
+            break
         }
       })
     setLoading(false)

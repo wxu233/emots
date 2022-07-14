@@ -20,5 +20,11 @@ if( window.location.hostname === 'localhost' ){
     console.log("using emulator")
 }
 
-export default app
+export const database = {
+    kaomojis: db.collection('kaomojis'),
+    users: db.collection('users'),
+    getCurrentTimestamp: firebase.firestore.FieldValue.serverTimestamp
+}
 export { db, auth }
+export default app
+
