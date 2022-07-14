@@ -1,18 +1,47 @@
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Card from 'react-bootstrap/Card'
 import Modal from 'react-bootstrap/Modal'
+import Alert from 'react-bootstrap/Alert'
+import { useAuth } from '../context/AuthContext'
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default function Login(props) {
 
+  const { login } = useAuth()
+
+  // const [ error, setError ] = useState('')
+  const [ isLoading, setLoading ] = useState(false)
+
   const emailRef = useRef()
   const passwordRef = useRef()
 
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    props.setError('')
 
-  const handleSubmit = () => {
-    console.log( "form submitted" )
+    // try{
+    setLoading(true)
+    login( emailRef.current.value, passwordRef.current.value )
+      .then( ()=>{
+        props.setError('')
+        props.handleModalClose()
+      }).catch( err => {
+        switch( err.code ){
+          case "auth/wrong-password":
+            props.setError('Password incorrect')
+            break
+          case "auth/user-not-found":
+            props.setError('Account with this email does not exist')
+            break
+          default:
+            props.setError('error')
+            break
+        }
+      })
+    setLoading(false)
   }
 
   return (
@@ -21,7 +50,8 @@ export default function Login(props) {
         <Card>
             <Card.Body>
                 <h2 className='text-center mb-4'>Log In</h2>
-                <Form>
+                {props.error && <Alert variant='danger'>{props.error}</Alert>}
+                <Form onSubmit={handleSubmit}>
                   <Form.Group id="email">
                     <Form.Label>Email</Form.Label>
                     <Form.Control type="email" ref={emailRef} required />
@@ -31,9 +61,8 @@ export default function Login(props) {
                     <Form.Control type="password" ref={passwordRef} required />
                   </Form.Group>
 
-                  <Button variant="primary" className="w-100 mt-2" type="submit" 
-                          style={{backgroundColor: '', boxShadow: ''}}
-                          onClick={handleSubmit}>
+                  <Button disabled={isLoading}
+                          variant="primary" className="w-100 mt-2" type="submit" >
                     Log In
                   </Button>
                 </Form>

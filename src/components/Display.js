@@ -3,12 +3,15 @@ import { db } from './firebase'
 import { query, orderBy, limit, collection, getDocs } from 'firebase/firestore'
 import { useCollectionData } from 'react-firebase-hooks/firestore'
 import Kaomoji from './Kaomoji'
+import Dashboard from './Dashboard'
 import Container from 'react-bootstrap/Container'
 import Button from 'react-bootstrap/Button'
+import { useAuth } from '../context/AuthContext'
 import './display.css'
 
 export default function Display() {
-
+    const { currentUser } = useAuth()
+    const [ favorites, setFavorites ] = useState([])
     // collection ref
     const dbRef = collection(db, 'kaomojis')
     
@@ -19,11 +22,14 @@ export default function Display() {
 
     console.log(data)
     return (
-        <Container className="card-deck">
-            <Button variant="primary">Hit me</Button>
-            {data && data.map( msg => 
-                <Kaomoji key={msg.id} data={msg} />       
-            )}
-        </Container>
+        <div>
+            {currentUser && <Dashboard />}
+            <Container className="card-deck">
+                {data && data.map( msg => 
+                    <Kaomoji key={msg.name} data={msg} />       
+                )}
+            </Container>  
+        </div>
+
     )
 }
