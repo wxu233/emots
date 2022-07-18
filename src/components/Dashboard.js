@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
 import { useAuth } from '../context/AuthContext'
+import { useTheme } from '../context/ThemeContext'
 
 export default function Dashboard() {
     const { currentUser, userProfile,  getProfile } = useAuth()
-    
+    const { currentTheme } = useTheme()
 
     // if( currentUser ){
     //   console.log('logged in dashboard')
@@ -29,7 +30,9 @@ export default function Dashboard() {
     return (
       <>
         {console.log(userProfile)}
-        {userProfile && <div style={{ color: 'white' }}>Dashboard</div>}
+        {userProfile && <div style={{ 
+            // color: currentTheme.colors.foreground 
+          }}>Dashboard</div>}
       </>
         
   )

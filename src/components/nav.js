@@ -8,22 +8,24 @@ import Offcanvas from 'react-bootstrap/Offcanvas'
 import Signup from './Signup'
 import Login from './Login'
 import { useAuth } from '../context/AuthContext'
+import { useTheme } from '../context/ThemeContext'
 
 export default function TopNav(props) {
     const { currentUser, logout } = useAuth()
+    const { currentTheme } = useTheme()
 
     const [ error, setError ] = useState('')
-
     const [modalShow, setModalShow] = useState(false)
     const [isLogin, setLogin] = useState(true)
+    
     const handleModalOpen = () => setModalShow( true )
     const handleModalClose = () => {
         setModalShow( false )
         setLogin( true )
         setError('')
     }
-    const handleSignUp = () => setLogin( !isLogin )
 
+    const handleSignUp = () => setLogin( !isLogin )
     const handleLogout = async () => {
         setError('')
         try{
@@ -36,7 +38,8 @@ export default function TopNav(props) {
 
     return (
         <div>
-            <Navbar key="sm" bg="light" expand="false" className="mb-3">
+            <Navbar key="sm" bg="light" expand="false" className="mb-3"
+                    style={{ backgroundColor: currentTheme.colors.menuBackground }}>
                 <Container fluid>
                     <Navbar.Brand href="#" className="">{currentUser ? currentUser.email : "Kaomoji.xyz"}</Navbar.Brand>
                     <Navbar.Toggle aria-controls="offcanvasNavbar-expand-sm" />
@@ -44,6 +47,10 @@ export default function TopNav(props) {
                     id="offcanvasNavbar-expand-sm"
                     aria-labelledby="offcanvasNavbar-expand-sm"
                     placement="end"
+                    style={{ 
+                            // backgroundColor: currentTheme.colors.menuBackground,
+                            //  color: currentTheme.colors.menuForeground        
+                    }}
                     >
                         <Offcanvas.Header closeButton>
                             <Offcanvas.Title id="offcanvasNavbar-expand-sm">
