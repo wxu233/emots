@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
 
-
 export const themes = {
     dark : {
         id : "D_001",
@@ -51,19 +50,15 @@ export function useTheme() {
 }
 
 export function ThemeProvider(props, { children }){
-    // const [ currentTheme, setTheme ] = useState( themes.dark )
+    const [ currentTheme, setTheme ] = useState( themes.dark )
 
-    // const value = {
-    //     currentTheme,
-    //     setTheme
-    // }
+    const value = {
+        currentTheme,
+        setTheme
+    }
 
     return (
-        <>
-            {console.log(props)}
-            <ThemeContext.Provider value={props.value.currentTheme}>{children}</ThemeContext.Provider>
-        </>
-        
+        <ThemeContext.Provider value={props.value.currentTheme}>{children}</ThemeContext.Provider>
     )
 }
 
