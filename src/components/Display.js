@@ -12,21 +12,20 @@ import './display.css'
 export default function Display() {
     const { currentUser } = useAuth()
     const [ favorites, setFavorites ] = useState([])
-    // collection ref
-    const dbRef = collection(db, 'kaomojis')
+
+    const dbRef = collection(db, 'kaomojis')//.withConverter(kaomojiConverter)
     
     // query
-    const q = query(dbRef, orderBy("likes", "desc"), limit(100))
+    const q = query(dbRef, orderBy("likes", "desc"), limit(75))
     // actually get the query
-    const [data] = useCollectionData(q)
+    const [, , ,snapshot] = useCollectionData(q)
 
-    console.log(data)
     return (
         <div>
             {currentUser && <Dashboard />}
             <Container className="card-deck">
-                {data && data.map( msg => 
-                    <Kaomoji key={msg.name} data={msg} />       
+                {snapshot && snapshot.docs.map( (doc) => 
+                    <Kaomoji key={doc.id} id={doc.id} data={doc.data().name} active={false} />       
                 )}
             </Container>  
         </div>

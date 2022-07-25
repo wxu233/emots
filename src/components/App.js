@@ -11,9 +11,10 @@ function App() {
   
   // const [ currentTheme, setTheme ] = useState( themes.dark ) 
   const { currentTheme } = useTheme()
-
+  // console.log( currentTheme )
   return (
     <AuthProvider>
+      {console.log("app")}
       <div 
           className="App"
           style={{

@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
+import firebase from 'firebase/compat/app'
 import { auth, database, getCurrentTimestamp } from '../components/firebase'
 
 const AuthContext = React.createContext()
@@ -30,7 +31,7 @@ export function AuthProvider({ children }){
             createdAt: database.getCurrentTimestamp()
         }
         console.log('creating user')
-        database.users.add( payload ).then( docRef =>{
+        database.users.doc( userID ).set( payload ).then( docRef =>{
             console.log(docRef)
             setUserProfile(payload)
         })
@@ -47,37 +48,77 @@ export function AuthProvider({ children }){
 
     function getProfile(){
         if( currentUser ){
-            database.users.where('userId', '==', currentUser.uid).get()
+            database.users.doc(currentUser.uid).get()
                 .then( doc => {
-                    // console.log(doc)
+                    console.log(doc)
                     const formattedDoc = {
                         id: doc.id,
-                        ...doc.docs[0].data()
+                        ...doc.data()
                     }
-                    // console.log(formattedDoc)
+                    console.log(formattedDoc)
                     setUserProfile( formattedDoc )
                 })
         }
         else{
             console.log("no current user")
-            return null
+            setUserProfile()
+        }
+    }
+
+    // input: kaomoji = { id, name }
+    function addFavorites( kaomoji ){
+        console.log( kaomoji )
+        if( currentUser ){  // only adds when user is logged in
+            if( userProfile.favorites.length >= userProfile.maxFavorites ){
+                console.log('you have too many favorites')
+                return
+            }
+            console.log('adding to favorites')
+
+            if( !userProfile.favorites.some( k => k.id === kaomoji.id )){   // prevents adding duplicates
+                const newProfile = Object.assign({}, userProfile)
+                newProfile.favorites.push(kaomoji)
+    
+                setUserProfile( newProfile )
+                console.log(userProfile.favorites)
+                // add change to database
+                database.users.doc(currentUser.uid).update({
+                    favorites: firebase.firestore.FieldValue.arrayUnion( kaomoji )
+                })
+            }
+        }
+    }
+
+    function removeFavorites( kaomoji ){
+        console.log( kaomoji )
+        if( currentUser ){
+            if( userProfile.favorites.length <= 0 ){
+                console.log( 'how did this happen' )
+                return
+            }
+            console.log( 'removing from favorites' )
+            const newProfile = Object.assign({}, userProfile)
+
+            newProfile.favorites = newProfile.favorites.filter( item => item.id !== kaomoji.id )
+            setUserProfile( newProfile )
+            database.users.doc(currentUser.uid).update({
+                favorites: firebase.firestore.FieldValue.arrayRemove( kaomoji )
+            })
         }
     }
 
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged( user => {
             setCurrentUser(user)
-            // if( user ){
-            //     setUserProfile( getProfile() )
-            // }
-            // else{
-            //     console.log('no user in effect')
-            // }
-            // console.log('current profile' + userProfile)
         })
+        getProfile()
 
         return unsubscribe
     }, [])
+
+    useEffect( () => {
+        getProfile()
+    }, [currentUser])
 
     const value = {
         currentUser,
@@ -86,7 +127,9 @@ export function AuthProvider({ children }){
         login,
         logout,
         createUser,
-        getProfile
+        getProfile,
+        addFavorites,
+        removeFavorites
     }
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>

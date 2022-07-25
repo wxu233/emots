@@ -38,18 +38,18 @@ export default function TopNav(props) {
 
     return (
         <div>
-            <Navbar key="sm" bg="light" expand="false" className="mb-3"
+            <Navbar key="sm" expand="false" className="mb-3"
                     style={{ backgroundColor: currentTheme.colors.menuBackground }}>
                 <Container fluid>
-                    <Navbar.Brand href="#" className="">{currentUser ? currentUser.email : "Kaomoji.xyz"}</Navbar.Brand>
+                    <Navbar.Brand href="#" style={{ color: currentTheme.colors.menuForeground }}>{currentUser ? currentUser.email : "Kaomoji.xyz"}</Navbar.Brand>
                     <Navbar.Toggle aria-controls="offcanvasNavbar-expand-sm" />
                     <Navbar.Offcanvas
                     id="offcanvasNavbar-expand-sm"
                     aria-labelledby="offcanvasNavbar-expand-sm"
                     placement="end"
                     style={{ 
-                            // backgroundColor: currentTheme.colors.menuBackground,
-                            //  color: currentTheme.colors.menuForeground        
+                            backgroundColor: currentTheme.colors.menuBackground,
+                            color: currentTheme.colors.menuForeground        
                     }}
                     >
                         <Offcanvas.Header closeButton>

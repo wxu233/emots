@@ -6,7 +6,7 @@ import Button from 'react-bootstrap/Button'
 import CardGroup from 'react-bootstrap/CardGroup'
 import starEmpty from '../static/star-empty.svg'
 import starFilled from '../static/star-filled.svg'
-
+import { useAuth } from '../context/AuthContext'
 import './display.css'
 
 const NORMAL = 'outline-info'
@@ -15,25 +15,24 @@ const CARD_NORMAL = 'info'
 const CARD_LIKED = 'warning'
 const image_style = {
     normal: {   filter: 'invert(93%) sepia(98%) saturate(4%) hue-rotate(46deg) brightness(108%) contrast(100%)' },
-    liked: {    backgroundColor: '',
+    liked: {    
                 filter: 'invert(86%) sepia(52%) saturate(6954%) hue-rotate(359deg) brightness(100%) contrast(107%)' 
             }
 }
 
 export default function Kaomoji(props) {
-
-    const [isActive, setActive] = useState(false)
+    const { userProfile, addFavorites, removeFavorites } = useAuth()
+    const [isActive, setActive] = useState(props.active)
     const [style, setStyle] = useState({display: 'none'})
 
     const actionSingleClick = () => {
-        navigator.clipboard.writeText(props.data.name)
-        console.log(props)
+        navigator.clipboard.writeText(props.data)
     }
 
     const actionDoubleClick = () => {
-        setActive(true)
+        buttonClick()
         // const doc = db.collection('kaomojis').get
-        console.log(props.data.likes, "double clicked")
+        // console.log(props.data.likes, "double clicked")
     }
 
     function useClick(actionSingleClick, actionDoubleClick, delay=200){
@@ -54,33 +53,47 @@ export default function Kaomoji(props) {
     }
 
     const click = useClick(actionSingleClick, actionDoubleClick)
-    const buttonClick = () => setActive(!isActive)
+    const buttonClick = () => {
+        console.log(props)
+        const k = {
+            id: props.id,
+            name: props.data
+        }
+        if( !isActive ){
+            
+            addFavorites( k )
+        }
+        else{   // remove from favs 
+            removeFavorites( k )
+        }
+        setActive(!isActive)   
+        console.log( userProfile.favorites )
+    }
 
     return (
         <>
             <Card 
                 bg='dark'
                 text='white'
-                border={isActive ? CARD_LIKED : CARD_NORMAL}
                 className='m-2 sm'
-                onMouseEnter={e => { setStyle({display: 'flex'}) }}
+                border={isActive ? CARD_LIKED : CARD_NORMAL}
+                // style={{ width: 'max-content'}}
+                onMouseEnter={e => { setStyle({display: 'block'}) }}
                 onMouseLeave={e => { setStyle({display: 'none'}) }}
                 >
                 <Card.Body className='row'>
                     <div className='card-content col'>
-                        <Card.Text onClick={click}>{props.data.name}</Card.Text>
+                        <Card.Text onClick={click}>{props.data}</Card.Text>
                     </div>
-                    <Button className='col-1 justify-content-center btn-star' 
+                    <i className='col-2 btn-star' 
                             variant={isActive ? LIKED : NORMAL}
-                            style={style}
+                            // style={style}
                             onMouseEnter={ e => { }}
                             onClick={buttonClick}>
                         <img className='button-img btn-link' src={ isActive ? starFilled : starEmpty} alt='' style={ isActive ? image_style.liked : image_style.normal}></img>
-                    </Button>
+                    </i>
                 </Card.Body>
-                
-            </Card>
-            
+            </Card>           
         </>
     )
 }

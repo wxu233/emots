@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState } from 'react'
 
 export const themes = {
     dark : {
@@ -49,7 +49,7 @@ export function useTheme() {
     return useContext(ThemeContext)
 }
 
-export function ThemeProvider(props, { children }){
+export function ThemeProvider({ children }){
     const [ currentTheme, setTheme ] = useState( themes.dark )
 
     const value = {
@@ -57,9 +57,7 @@ export function ThemeProvider(props, { children }){
         setTheme
     }
 
-    return (
-        <ThemeContext.Provider value={props.value.currentTheme}>{children}</ThemeContext.Provider>
-    )
+    return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>
 }
 
 
