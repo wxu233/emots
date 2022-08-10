@@ -1,9 +1,6 @@
 import './App.css'
-import { db } from './firebase'
 import { useEffect, useState } from 'react'
 import Card from 'react-bootstrap/Card'
-import Button from 'react-bootstrap/Button'
-import CardGroup from 'react-bootstrap/CardGroup'
 import starEmpty from '../static/star-empty.svg'
 import starFilled from '../static/star-filled.svg'
 import { useAuth } from '../context/AuthContext'
@@ -22,19 +19,19 @@ const image_style = {
 
 export default function Kaomoji(props) {
     const { userProfile, addFavorites, removeFavorites } = useAuth()
-    const [isActive, setActive] = useState(props.active)
+    const [isActive, setActive] = useState(props.active)    // favorited items
     const [style, setStyle] = useState({display: 'none'})
 
+    // copies to clipboard
     const actionSingleClick = () => {
         navigator.clipboard.writeText(props.data)
     }
 
     const actionDoubleClick = () => {
-        buttonClick()
-        // const doc = db.collection('kaomojis').get
-        // console.log(props.data.likes, "double clicked")
+        setFavorite()
     }
 
+    // determines single click vs double click
     function useClick(actionSingleClick, actionDoubleClick, delay=200){
         const [click, setClick] = useState(0)
 
@@ -53,14 +50,15 @@ export default function Kaomoji(props) {
     }
 
     const click = useClick(actionSingleClick, actionDoubleClick)
-    const buttonClick = () => {
+
+    // adds/
+    const setFavorite = () => {
         console.log(props)
         const k = {
             id: props.id,
             name: props.data
         }
         if( !isActive ){
-            
             addFavorites( k )
         }
         else{   // remove from favs 
@@ -78,6 +76,7 @@ export default function Kaomoji(props) {
                 className='m-2 sm'
                 border={isActive ? CARD_LIKED : CARD_NORMAL}
                 // style={{ width: 'max-content'}}
+                // TODO: fix unable to select certain cards on mouse hover
                 onMouseEnter={e => { setStyle({display: 'block'}) }}
                 onMouseLeave={e => { setStyle({display: 'none'}) }}
                 >
@@ -89,7 +88,7 @@ export default function Kaomoji(props) {
                             variant={isActive ? LIKED : NORMAL}
                             // style={style}
                             onMouseEnter={ e => { }}
-                            onClick={buttonClick}>
+                            onClick={setFavorite}>
                         <img className='button-img btn-link' src={ isActive ? starFilled : starEmpty} alt='' style={ isActive ? image_style.liked : image_style.normal}></img>
                     </i>
                 </Card.Body>

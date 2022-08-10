@@ -12,15 +12,13 @@ export function AuthProvider({ children }){
     const [currentUser, setCurrentUser] = useState()
     const [userProfile, setUserProfile]  = useState()
 
-    // const [isLoading, setLoading] = useState(true)
-
     function signup(email, password){
-        // console.log(email + ": " + password)
        return auth.createUserWithEmailAndPassword(email, password)
     }
 
+    // create user entry in database
     function createUser(userID){
-        // console.log(userID)
+        // default user settings
         const payload = {
             userId: userID,
             theme: 'default',
@@ -30,7 +28,7 @@ export function AuthProvider({ children }){
             customs: [],
             createdAt: database.getCurrentTimestamp()
         }
-        console.log('creating user')
+
         database.users.doc( userID ).set( payload ).then( docRef =>{
             console.log(docRef)
             setUserProfile(payload)
@@ -42,10 +40,11 @@ export function AuthProvider({ children }){
     }
 
     function logout(){
-        console.log("signing out current user")
         return auth.signOut()
     }
 
+    // retrieves user data from database if logged in
+    //  should be async?
     function getProfile(){
         if( currentUser ){
             database.users.doc(currentUser.uid).get()
@@ -60,43 +59,39 @@ export function AuthProvider({ children }){
                 })
         }
         else{
-            console.log("no current user")
-            setUserProfile()
+            setUserProfile()    // null
         }
     }
 
     // input: kaomoji = { id, name }
     function addFavorites( kaomoji ){
-        console.log( kaomoji )
         if( currentUser ){  // only adds when user is logged in
             if( userProfile.favorites.length >= userProfile.maxFavorites ){
+                // TODO: use snackbar/toast to notify user
                 console.log('you have too many favorites')
                 return
             }
-            console.log('adding to favorites')
 
             if( !userProfile.favorites.some( k => k.id === kaomoji.id )){   // prevents adding duplicates
-                const newProfile = Object.assign({}, userProfile)
+                const newProfile = Object.assign({}, userProfile) 
                 newProfile.favorites.push(kaomoji)
     
-                setUserProfile( newProfile )
-                console.log(userProfile.favorites)
-                // add change to database
+                setUserProfile( newProfile )    // displays changes immediately while changes are being pushed to server
+                
                 database.users.doc(currentUser.uid).update({
                     favorites: firebase.firestore.FieldValue.arrayUnion( kaomoji )
-                })
+                }) // TODO: async? error handling
             }
         }
     }
 
+    // input: kaomoji = { id, name }
     function removeFavorites( kaomoji ){
-        console.log( kaomoji )
         if( currentUser ){
             if( userProfile.favorites.length <= 0 ){
                 console.log( 'how did this happen' )
                 return
             }
-            console.log( 'removing from favorites' )
             const newProfile = Object.assign({}, userProfile)
 
             newProfile.favorites = newProfile.favorites.filter( item => item.id !== kaomoji.id )
@@ -118,7 +113,7 @@ export function AuthProvider({ children }){
 
     useEffect( () => {
         getProfile()
-    }, [currentUser])
+    }, [currentUser])   // not needed?
 
     const value = {
         currentUser,

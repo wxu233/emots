@@ -7,24 +7,15 @@ import Container from 'react-bootstrap/Container'
 export default function Dashboard() {
     const { currentUser, userProfile, addFavorites, removeFavorites } = useAuth()
     const { currentTheme } = useTheme()
-    // const [ favorites, setFavorites ] = useState( [] )
 
     function getFavs() {
+      // checks userProfile instead of currentUser because on user change, react immediately re-renders
+      // relavent components before userProfile can be properly set
       if( userProfile ){
         return userProfile.favorites.map( (fav) => 
               <Kaomoji key={fav.id} id={fav.id} data={fav.name} active={true}/> )
       }
     }
-
-    // useEffect(() => {
-    //   if( currentUser ){
-    //     console.log('logged in dashboard')
-    //     setFavorites( userProfile?.favorites )
-    //   }
-    //   else{
-    //     setFavorites([])
-    //   }
-    // }, [currentUser, userProfile])
 
     return (
       <>

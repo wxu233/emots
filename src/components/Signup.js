@@ -31,6 +31,7 @@ export default function Signup(props) {
     setLoading(true)
     signup( emailRef.current.value, passwordRef.current.value )
       .then( (userCred) => {
+        // TODO: what happens when to createUser when err is catched?
         createUser(userCred.user.uid)
         props.setError('')
         props.handleModalClose()

@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import Container from 'react-bootstrap/Container'
-// import NavDropdown from 'react-bootstrap/NavDropdown'
 import Offcanvas from 'react-bootstrap/Offcanvas'
 import Signup from './Signup'
 import Login from './Login'
@@ -43,6 +42,9 @@ export default function TopNav(props) {
                 <Container fluid>
                     <Navbar.Brand href="#" style={{ color: currentTheme.colors.menuForeground }}>{currentUser ? currentUser.email : "Kaomoji.xyz"}</Navbar.Brand>
                     <Navbar.Toggle aria-controls="offcanvasNavbar-expand-sm" />
+                    <Nav className="justify-content-end flex-grow-1 pe-3">
+                        <Nav.Link href="#"></Nav.Link> 
+                    </Nav>
                     <Navbar.Offcanvas
                     id="offcanvasNavbar-expand-sm"
                     aria-labelledby="offcanvasNavbar-expand-sm"
