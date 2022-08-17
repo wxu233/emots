@@ -1,5 +1,6 @@
-.root {
-  background-color: #272822;
+:root {
+  --sidebar-width: 18rem;
+  --screen-size: 1065px;
 }
 
 .App {
@@ -7,6 +8,28 @@
   /* background-color: black; */
 }
 
+
+
+.content {
+  align-items: center;
+  justify-content: center;
+}
+
+/* small screen */
+@media only screen and (max-width : 1065px) {
+    .content {
+      padding-left: 0;
+    }
+}
+
+/* large screen */
+@media only screen and (min-width : 1065px) {
+    .content {
+        padding-left: var(--sidebar-width);
+    }
+}
+
+/* 
 .navbar-brand {
   font-weight: bold;
   font-size: x-large;
@@ -16,7 +39,7 @@
   .card {
     flex-direction: row;
   }
-}
+} */
 
 /* 
 .App-logo {

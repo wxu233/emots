@@ -11,7 +11,7 @@ export default function Dashboard() {
     function getFavs() {
       // checks userProfile instead of currentUser because on user change, react immediately re-renders
       // relavent components before userProfile can be properly set
-      if( userProfile ){
+      if( userProfile?.favorites ){
         return userProfile.favorites.map( (fav) => 
               <Kaomoji key={fav.id} id={fav.id} data={fav.name} active={true}/> )
       }
@@ -21,7 +21,7 @@ export default function Dashboard() {
       <>
         { userProfile && 
           <Container className='card-deck'>
-            {console.log(userProfile.favorites) } 
+            {console.log(userProfile) } 
             <div style={{ 
               color: currentTheme.colors.foreground 
             }}>Dashboard</div>

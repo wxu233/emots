@@ -53,7 +53,6 @@ export default function Kaomoji(props) {
 
     // adds/
     const setFavorite = () => {
-        console.log(props)
         const k = {
             id: props.id,
             name: props.data
@@ -65,7 +64,6 @@ export default function Kaomoji(props) {
             removeFavorites( k )
         }
         setActive(!isActive)   
-        console.log( userProfile.favorites )
     }
 
     return (
@@ -73,18 +71,18 @@ export default function Kaomoji(props) {
             <Card 
                 bg='dark'
                 text='white'
-                className='m-2 sm'
+                className='kaomoji m-2 sm'
                 border={isActive ? CARD_LIKED : CARD_NORMAL}
                 // style={{ width: 'max-content'}}
                 // TODO: fix unable to select certain cards on mouse hover
                 onMouseEnter={e => { setStyle({display: 'block'}) }}
                 onMouseLeave={e => { setStyle({display: 'none'}) }}
                 >
-                <Card.Body className='row'>
-                    <div className='card-content col'>
+                <Card.Body className='kaomoji-body row'>
+                    <div id='name'>
                         <Card.Text onClick={click}>{props.data}</Card.Text>
                     </div>
-                    <i className='col-2 btn-star' 
+                    <i className='btn-star end-0' id='icon'
                             variant={isActive ? LIKED : NORMAL}
                             // style={style}
                             onMouseEnter={ e => { }}

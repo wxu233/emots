@@ -1,0 +1,31 @@
+[debug] [2022-07-22T08:40:07.739Z] ----------------------------------------------------------------------
+[debug] [2022-07-22T08:40:07.740Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\xwt20\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js emulators:start --import=./output
+[debug] [2022-07-22T08:40:07.741Z] CLI Version:   11.0.0
+[debug] [2022-07-22T08:40:07.741Z] Platform:      win32
+[debug] [2022-07-22T08:40:07.741Z] Node Version:  v16.14.2
+[debug] [2022-07-22T08:40:07.741Z] Time:          Fri Jul 22 2022 04:40:07 GMT-0400 (Eastern Daylight Time)
+[debug] [2022-07-22T08:40:07.742Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2022-07-22T08:40:07.744Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2022-07-22T08:40:07.818Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2022-07-22T08:40:07.818Z] > authorizing via signed-in user (xwt20060816@gmail.com)
+[debug] [2022-07-22T08:40:07.907Z] openjdk version "17.0.2" 2022-01-18
+OpenJDK Runtime Environment Temurin-17.0.2+8 (build 17.0.2+8)
+OpenJDK 64-Bit Server VM Temurin-17.0.2+8 (build 17.0.2+8, mixed mode, sharing)
+
+[debug] [2022-07-22T08:40:07.916Z] Parsed Java major version: 17
+[info] i  emulators: Starting emulators: auth, functions, firestore, hosting {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: auth, functions, firestore, hosting"}}
+[warn] !  emulators: It seems that you are running multiple instances of the emulator suite for project kaomoji-54124. This may result in unexpected behavior. 
+[debug] [2022-07-22T08:40:07.926Z] [hub] writing locator at C:\Users\xwt20\AppData\Local\Temp\hub-kaomoji-54124.json
+[debug] [2022-07-22T08:40:07.950Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2022-07-22T08:40:07.950Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
+[info] i  emulators: Shutting down emulators. {"metadata":{"emulator":{"name":"hub"},"message":"Shutting down emulators."}}
+[info] i  hub: Stopping emulator hub {"metadata":{"emulator":{"name":"hub"},"message":"Stopping emulator hub"}}
+[debug] [2022-07-22T08:40:08.267Z] Error: ENOENT: no such file or directory, lstat 'C:\Users\xwt20\Documents\independent_studies\repo\emots\src\components\output'
+    at Object.lstatSync (node:fs:1516:3)
+    at findExportMetadata (C:\Users\xwt20\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\controller.js:177:32)
+    at Object.startAll (C:\Users\xwt20\AppData\Roaming\npm\node_modules\firebase-tools\lib\emulator\controller.js:265:31)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async Command.actionFn (C:\Users\xwt20\AppData\Roaming\npm\node_modules\firebase-tools\lib\commands\emulators-start.js:28:35)
+[error] 
+[error] Error: An unexpected error has occurred.

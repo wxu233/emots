@@ -30,7 +30,6 @@ export function AuthProvider({ children }){
         }
 
         database.users.doc( userID ).set( payload ).then( docRef =>{
-            console.log(docRef)
             setUserProfile(payload)
         })
     }
@@ -49,12 +48,10 @@ export function AuthProvider({ children }){
         if( currentUser ){
             database.users.doc(currentUser.uid).get()
                 .then( doc => {
-                    console.log(doc)
                     const formattedDoc = {
                         id: doc.id,
                         ...doc.data()
                     }
-                    console.log(formattedDoc)
                     setUserProfile( formattedDoc )
                 })
         }
@@ -75,7 +72,7 @@ export function AuthProvider({ children }){
             if( !userProfile.favorites.some( k => k.id === kaomoji.id )){   // prevents adding duplicates
                 const newProfile = Object.assign({}, userProfile) 
                 newProfile.favorites.push(kaomoji)
-    
+                
                 setUserProfile( newProfile )    // displays changes immediately while changes are being pushed to server
                 
                 database.users.doc(currentUser.uid).update({
@@ -102,15 +99,15 @@ export function AuthProvider({ children }){
         }
     }
 
+    // somehow can't retrieve user profile after onAuthStateChanged
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged( user => {
             setCurrentUser(user)
         })
-        getProfile()
-
         return unsubscribe
     }, [])
 
+    // needs to monitor current user
     useEffect( () => {
         getProfile()
     }, [currentUser])   // not needed?

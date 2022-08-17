@@ -1,38 +1,52 @@
-/* .button {
-    display: none;
-} */
-
-.card {
-    display: flex;
-    
-    min-width: 50px;
-    max-height: 3.5rem;
-
+.kaomoji {
+    min-height: 3rem;
+    max-height: 3.5rem; 
+    /* flex-direction: row; */
     flex-grow: 1; 
-    margin: 0 auto;
+    /* margin: 0 auto; */
 }
 
-/* .card:hover + .button, .button:hover {
+.kaomoji-body {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    flex-wrap: nowrap;
+    margin: 0;
+    padding: 0 0 0 0;
+    justify-content: center;
+    align-items: center;
+}
 
-    display: contents;
-} */
+.kaomoji-body #name {
+    flex: 80%;
+    display: grid;
+    white-space: nowrap;
+    place-items: center;
+}
 
-.card-content {
+.kaomoji-body #icon {
+    flex: 20%;
+
+    /* position: absolute; */
+    place-content: end;
+}
+
+/* .card-content {
     
     flex-wrap: nowrap;
     align-self: flex-start;
 
     overflow: hidden;
-    display: inline-block;
+
     text-overflow: ellipsis;
     white-space: nowrap;
-    /* justify-content: left; */
-}
+
+} */
 
 .card-deck {
     justify-content: center;
     display:flex;
-    flex-direction: row;
+    /* flex-direction: row; */
     flex-wrap: wrap;
 }
 
@@ -40,9 +54,9 @@
     background-color: transparent;
     /* display: inline-block; */
     justify-content: center;
-    margin-left: 1rem;
+    /* margin-left: 1rem; */
     margin-right: 0;
-    padding: 0 !important;
+    /* padding: 0 !important; */
     /* box-shadow: none; */
 }
 

@@ -11,8 +11,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 export default function Login(props) {
 
   const { login } = useAuth()
-
-  // const [ error, setError ] = useState('')
   const [ isLoading, setLoading ] = useState(false)
 
   const emailRef = useRef()
