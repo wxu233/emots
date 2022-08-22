@@ -7,18 +7,18 @@ export const SidebarData = [
         title: 'Home',
         path: '/',
         icon: <HiHome />,
-        className: "sidebar-nav-item"
+        className: "sidebar-link"
     },
     {
         title: 'Categories',
         path: '/categories',
         icon: <MdCategory />,
-        className: "sidebar-nav-item"
+        className: "sidebar-link"
     },
     {
         title: 'Favorites',
         path: '/favorites',
         icon: <HiStar />,
-        className: "sidebar-nav-item"
+        className: "sidebar-link"
     }
 ]

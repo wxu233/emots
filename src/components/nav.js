@@ -125,22 +125,21 @@ export default function TopNav(props) {
                     <a  className="brand-link" href="/home">
                         <span style={{ color: currentTheme.colors.foreground }}>kaomoji</span>
                     </a>
-                    <div className="sidebar-menu">
-                        <button className={ mobile ? "menu active" : "menu inactive" }
-                            style={{ color: currentTheme.colors.foreground }}
-                        >
-                            <FaBars />
-                        </button>
-                    </div>
                 </div>
-                
-                
+
+                <div className="sidebar-menu">
+                    <button
+                        style={{ color: currentTheme.colors.foreground }}
+                    >
+                        <FaBars />
+                    </button>
+                </div>
             
-                
-                <Nav className={ sidebar ? "sidebar active" : "sidebar inactive" }
+                <Nav 
+                    className="sidebar-nav"
                     style={{ backgroundColor: currentTheme.colors.menuBackground}}
                 >
-                    <ul className="sidebar-nav">
+                    <ul>
                     {SidebarData.map( (data, index) => {
                         return (
                         <li key={index} className={data.className}>

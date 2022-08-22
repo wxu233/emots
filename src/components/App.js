@@ -25,9 +25,10 @@ function App() {
             display: 'block',
           }}
       >
-        <div className="sidebar">
+        <div className="side-bar">
           <BrowserRouter>
-            <TopNav />
+            {/* <TopNav /> */}
+            <Sidebar />
             <Routes>
               <Route path="/" />
             </Routes>

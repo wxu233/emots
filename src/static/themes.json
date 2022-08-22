@@ -1,0 +1,42 @@
+{
+    "data" : {
+        "dark" : {
+            "id" : "D_001",
+            "name" : "Dark",
+            "colors" : {
+                "background" : "#1e1e1e",
+                "foreground" : "#d4d4d4",
+                "inactiveCardBackground" : "#3a3d41",
+                "selectionHighlightBackground" : "#add6ff26",
+                "selectionBorder" : "#d4d4d4",
+                "menu.background" : "#303031",
+                "menu.foreground" : "#cccccc",
+                "text" : "#569cd6",
+                "info" : "#6796e6",
+                "warn" : "#cd9731",
+                "error" : "#f44747",
+                "debug" : "#b267e6",
+                "link" : "#4e94ce"
+            }
+        },
+        "light" : {
+            "id" : "L_001",
+            "name" : "Light",
+            "colors" : {
+                "background" : "#ffffff",
+                "foreground" : "#000000",
+                "inactiveBackground" : "#ffffff",
+                "selectionHighlightBackground" : "#eeeeee",
+                "selectionBorder" : "#fed442",
+                "menu.background" : "#ffffff",
+                "menu.foreground" : "#000000",
+                "text" : "#000000",
+                "info" : "#316BCD",
+                "warn" : "#cd9731",
+                "error" : "#CD3131",
+                "debug" : "#800080",
+                "link" : "#4e94ce"
+            }
+        }
+    }
+}
