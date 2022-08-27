@@ -12,8 +12,8 @@ a {
 
 .brand {
     display: flex;
-    font-size: 2rem;
-    font-weight: bold;
+    font-size: 1.5rem;
+    font-weight: 600;
     margin: .75rem .5rem;
 }
 
@@ -32,14 +32,18 @@ a {
 }
 
 .sidebar-links li a {
-    display: block;
+    display: flex;
     text-decoration: none;
-    padding: 1rem;
+    padding: 1rem 0;
     color: white;
 }
 
 .sidebar-links li:hover {
     background-color: #555;
+}
+
+.sidebar-links a {
+    font-size: 1rem;
 }
 
 .sidebar-toggle {
@@ -58,6 +62,14 @@ a {
     height: 100%;
     margin-bottom: auto;
     background-color: yellowgreen;
+}
+
+.btn-login {
+    display: inline-block;
+    margin: 0 auto;
+    padding: 0;
+    /* max-height: 1.5rem; */
+    border: none;
 }
 
 @media screen and (max-width: 1065px) {
@@ -88,9 +100,9 @@ a {
         display: flex;
     }
 
-    .sidebar-links a {
-        font-size: 1.5rem;
-    }
+    /* .sidebar-links a {
+        font-size: 1rem;
+    } */
 
     .sidebar-text {
         margin-left: 1rem;
@@ -104,12 +116,10 @@ a {
     }
     .sidebar {
         position: absolute;
-        width: var(--sidebar-width);
+        /* width: var(--sidebar-width); */
+        width: 11rem;
         height: 100vh;
-    }
-
-    .sidebar-links a {
-        font-size: 1.5rem;
+        justify-content: space-between;
     }
 
     .sidebar-text {
