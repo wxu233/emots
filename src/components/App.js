@@ -1,45 +1,40 @@
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
-import React from 'react'
-import TopNav from './nav'
-import Display from './Display'
-import Sidebar from './Sidebar'
-import { AuthProvider } from '../context/AuthContext'
-import { useTheme } from '../context/ThemeContext'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-
+import React, { useEffect } from "react";
+import TopNav from "./nav";
+import Display from "./Display";
+import Sidebar from "./Sidebar";
+import { AuthProvider } from "../context/AuthContext";
+import { useTheme } from "../context/ThemeContext";
 
 function App() {
+  const { currentTheme } = useTheme();
 
-  const { currentTheme } = useTheme()
+  // applies the theme even after scroll
+  useEffect(() => {
+    document.body.style.backgroundColor = currentTheme.colors.background;
+  });
 
   return (
     <AuthProvider>
-      <div 
-          className="App "
-          style={{
-            backgroundColor: currentTheme.colors.background,
-            width: '100vw',
-            height: '100vh',
-            display: 'block',
-          }}
+      <div
+        className="App "
+        style={{
+          width: "100vw",
+          height: "100vh",
+          display: "block",
+        }}
       >
         <div className="side-bar">
-          <BrowserRouter>
-            {/* <TopNav /> */}
-            <Sidebar />
-            <Routes>
-              <Route path="/" />
-            </Routes>
-          </BrowserRouter>
+          <Sidebar />
         </div>
         <div className="content">
           <Display />
         </div>
       </div>
     </AuthProvider>
-  )
+  );
 }
 
 export default App;

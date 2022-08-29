@@ -1,66 +1,64 @@
 .kaomoji {
-    min-height: 3rem;
-    max-height: 3.5rem; 
-    /* flex-direction: row; */
-    flex-grow: 1; 
-    /* margin: 0 auto; */
+  min-height: 3rem;
+  max-height: 3.5rem;
+  /* flex-direction: row; */
+  flex-grow: 1;
+  /* margin: 0 auto; */
 }
 
 .kaomoji-body {
-    display: flex;
-    flex-direction: row;
-    flex-grow: 1;
-    flex-wrap: nowrap;
-    margin: 0;
-    padding: 0 0 0 0;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  flex-wrap: nowrap;
+  margin: 0;
+  padding: 0 0 0 0;
+  justify-content: center;
+  align-items: center;
 }
 
 .kaomoji-body #name {
-    flex: 80%;
-    display: grid;
-    white-space: nowrap;
-    place-items: center;
+  flex: 80%;
+  display: grid;
+  white-space: nowrap;
+  place-items: center;
 }
 
 .kaomoji-body #icon {
-    flex: 20%;
+  flex: 20%;
 
-    /* position: absolute; */
-    place-content: end;
+  /* position: absolute; */
+  place-content: end;
 }
 
-/* .card-content {
-    
-    flex-wrap: nowrap;
-    align-self: flex-start;
-
-    overflow: hidden;
-
-    text-overflow: ellipsis;
-    white-space: nowrap;
-
-} */
-
 .card-deck {
-    justify-content: center;
-    display:flex;
-    /* flex-direction: row; */
-    flex-wrap: wrap;
+  /* justify-content: center; */
+  display: flex;
+  /* flex-direction: row; */
+  flex-wrap: wrap;
 }
 
 .btn-star {
-    background-color: transparent;
-    /* display: inline-block; */
-    justify-content: center;
-    /* margin-left: 1rem; */
-    margin-right: 0;
-    /* padding: 0 !important; */
-    /* box-shadow: none; */
+  background-color: transparent;
+  /* display: inline-block; */
+  justify-content: center;
+  /* margin-left: 1rem; */
+  margin-right: 0;
+  /* padding: 0 !important; */
+  /* box-shadow: none; */
 }
 
 .button-img {
-    width: 15px;
-    height: 15px;
+  width: 15px;
+  height: 15px;
+}
+
+.display-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+.section-header {
+  font-weight: bold;
+  font-size: 1.5rem;
 }
