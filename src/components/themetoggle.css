@@ -1,0 +1,72 @@
+.toggle-label {
+  display: flex !important;
+  width: 75px;
+  height: 35px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 6px;
+  background: #222;
+  border-radius: 50px;
+  cursor: pointer;
+  position: relative;
+  transition: 0.3s;
+}
+
+input {
+  display: none;
+}
+
+.toggle-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+input:checked + .toggle-label .ball {
+  background: #e4e7eb;
+}
+
+.toggle-label .sun {
+  opacity: 0;
+}
+
+.toggle-label .sun {
+  transform: translateX(43px) rotate(250deg);
+}
+
+input:checked + .toggle-label .sun {
+  opacity: 1;
+}
+
+input:checked + .toggle-label .sun {
+  transform: translateX(0);
+}
+
+.toggle-label .moon {
+  opacity: 1;
+}
+
+input:checked + .toggle-label .moon {
+  opacity: 0;
+}
+
+input:checked + .toggle-label .moon {
+  transform: translateX(-43px) rotate(-160deg);
+}
+
+.toggle-label .ball {
+  position: absolute;
+  display: block;
+  width: 25px;
+  height: 25px;
+  top: 5px;
+  left: 5px;
+  background: #3e4c59;
+  border-radius: 50%;
+  transition: 0.8s;
+}
+
+input:checked + .toggle-label .ball {
+  transform: translateX(40px);
+}

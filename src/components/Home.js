@@ -33,6 +33,7 @@ export default function Home() {
         >
           Popular emots
         </div>
+        console.log(snapshot)
         <Container className="card-deck">
           {snapshot &&
             snapshot.docs.map((doc) => (

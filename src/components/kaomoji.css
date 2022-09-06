@@ -1,0 +1,29 @@
+.kaomoji {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+  /* a bit more space */
+  min-height: 3rem;
+  margin: 10px 10px;
+  border-radius: 5px;
+  justify-content: space-between;
+  align-items: center;
+  border-style: solid;
+  border-width: 1px;
+}
+
+.kaomoji-text-container {
+  display: flex;
+  flex: 70%;
+  justify-content: center;
+}
+
+.kaomoji-text {
+  display: flex;
+  padding: 0 0.5rem 0 0.25rem;
+  /* left: 10px; */
+}
+
+.kaomoji-star {
+  padding-right: 10px;
+}

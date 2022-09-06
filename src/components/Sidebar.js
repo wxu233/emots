@@ -8,11 +8,12 @@ import Button from "react-bootstrap/Button";
 import Bars from "./Bars";
 import Login from "./Login";
 import Signup from "./Signup";
+import ThemeToggle from "./ThemeToggle";
 import "./Sidebar.css";
 
 export default function Sidebar() {
   const { currentUser, login, logout } = useAuth();
-  const { currentTheme } = useTheme();
+  const { currentTheme, changeTheme } = useTheme();
 
   const [sidebar, setSidebar] = useState(false);
   const [mobile, setMobile] = useState(false);
@@ -39,6 +40,18 @@ export default function Sidebar() {
       console.log("User logged out");
     } catch {
       setError("Failed to log out");
+    }
+  };
+
+  const handleToggle = () => {
+    console.log("toggle button clicked");
+    if (currentTheme.name === "dark") {
+      changeTheme("light");
+      // TODO change user pref in database
+    } else if (currentTheme.name === "light") {
+      changeTheme("dark");
+    } else {
+      console.log("unknow theme");
     }
   };
 
@@ -100,16 +113,27 @@ export default function Sidebar() {
                   );
                 })}
               </ul>
-              {!currentUser && (
-                <Button className="login-btn" onClick={handleModalOpen}>
-                  Log in
-                </Button>
-              )}
-              {currentUser && (
-                <Button className="login-btn btn-danger" onClick={handleLogout}>
-                  Log Out
-                </Button>
-              )}
+              <div
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+              >
+                <ThemeToggle onClick={() => handleToggle()} />
+                {!currentUser && (
+                  <Button className="login-btn" onClick={handleModalOpen}>
+                    Log in
+                  </Button>
+                )}
+                {currentUser && (
+                  <Button
+                    className="login-btn btn-danger"
+                    onClick={handleLogout}
+                  >
+                    Log Out
+                  </Button>
+                )}
+              </div>
               {/* </div> */}
             </div>
           </>
@@ -131,38 +155,46 @@ export default function Sidebar() {
                   );
                 })}
               </ul>
+              <div>
+                <ThemeToggle onClick={() => handleToggle()} />
+                {!currentUser && (
+                  <Button className="login-btn" onClick={handleModalOpen}>
+                    Log in
+                  </Button>
+                )}
+                {currentUser && (
+                  <Button
+                    className="login-btn btn-danger"
+                    onClick={handleLogout}
+                  >
+                    Log Out
+                  </Button>
+                )}
+              </div>
             </div>
-            {!currentUser && (
-              <Button className="login-btn" onClick={handleModalOpen}>
-                Log in
-              </Button>
-            )}
-            {currentUser && (
-              <Button className="login-btn btn-danger" onClick={handleLogout}>
-                Log Out
-              </Button>
-            )}
           </>
         )}
       </nav>
 
-      {isLogin ? (
-        <Login
-          modalShow={modalShow}
-          handleModalClose={handleModalClose}
-          isLogin={isLogin}
-          error={error}
-          setError={setError}
-          handleSignUp={handleSignUp}
-        />
-      ) : (
-        <Signup
-          modalShow={modalShow}
-          error={error}
-          setError={setError}
-          handleModalClose={handleModalClose}
-        />
-      )}
+      <div>
+        {isLogin ? (
+          <Login
+            modalShow={modalShow}
+            handleModalClose={handleModalClose}
+            isLogin={isLogin}
+            error={error}
+            setError={setError}
+            handleSignUp={handleSignUp}
+          />
+        ) : (
+          <Signup
+            modalShow={modalShow}
+            error={error}
+            setError={setError}
+            handleModalClose={handleModalClose}
+          />
+        )}
+      </div>
     </>
   );
 }

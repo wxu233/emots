@@ -1,9 +1,9 @@
-.kaomoji {
+/* .kaomoji {
+  display: flex;
   min-height: 3rem;
-  max-height: 3.5rem;
-  /* flex-direction: row; */
+
   flex-grow: 1;
-  /* margin: 0 auto; */
+
 }
 
 .kaomoji-body {
@@ -27,31 +27,28 @@
 .kaomoji-body #icon {
   flex: 20%;
 
-  /* position: absolute; */
   place-content: end;
-}
+} */
 
 .card-deck {
-  /* justify-content: center; */
   display: flex;
-  /* flex-direction: row; */
+
   flex-wrap: wrap;
 }
 
-.btn-star {
-  background-color: transparent;
-  /* display: inline-block; */
+/* .btn-star {
   justify-content: center;
-  /* margin-left: 1rem; */
+
   margin-right: 0;
-  /* padding: 0 !important; */
-  /* box-shadow: none; */
+
+  width: 15px;
+  height: 15px;
 }
 
 .button-img {
   width: 15px;
   height: 15px;
-}
+} */
 
 .display-container {
   display: flex;
@@ -61,4 +58,12 @@
 .section-header {
   font-weight: bold;
   font-size: 1.5rem;
+}
+
+.img-invert {
+  -moz-tranform: scale(-1, 1);
+  -webkit-transform: scale(-1, 1);
+  -o-transform: scale(-1, 1);
+  -ms-transform: scale(-1, 1);
+  transform: scale(-1, 1);
 }
